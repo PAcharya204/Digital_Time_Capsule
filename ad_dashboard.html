@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <title>Admin Dashboard | Future Sync</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+    body {
+      background: linear-gradient(135deg, #1a0029, #2d0066);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      width: 99%;
+      box-shadow: 0 8px 30px rgba(255, 0, 255, 0.1);
+      margin-top: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand img {
+      width: 100px;
+      border-radius: 14px;
+      background: transparent;
+    }
+
+    .brand-text h2 {
+      font-size: 60px;
+      background: linear-gradient(90deg, #ff00cc, #3333ff);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .brand-text p {
+      font-size: 22px;
+      color: #ffcaff;
+    }
+    h1 {
+      font-size: 52px;
+      color: #ffc8ff;
+      margin: 50px 0 30px;
+      text-shadow: 0 0 15px #ff00ff;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .dashboard-button {
+      background: linear-gradient(135deg, #9f00ff, #ff00ff);
+      padding: 30px;
+      width: 260px;
+      height: 140px;
+      color: #fff;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .dashboard-button i {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .dashboard-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 45px rgba(255, 0, 255, 0.5);
+      background: linear-gradient(135deg, #ff00ff, #9f00ff);
+    }
+
+    .burger {
+      position: relative;
+      float:left;
+      top: 20px;
+      left: -48%;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 2;
+      color: #ff00ff;
+    }
+
+
+    .hide {
+      display: none;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: linear-gradient(135deg, #1a0029, #2d0066);
+      position: fixed;
+      left: -250px;
+      top: 10px;;
+      z-index: 1000;
+      transition: 0.3s;
+      box-shadow: 2px 0 10px rgba(255, 0, 255, 0.3);
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 15px;
+      border-bottom: 1px solid #2D2D50;
+      font-size: 18px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #ffc8ff;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      background: gray;
+      padding-left: 10px;
+      padding: 10px;
+      border-radius: 50px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 25px;
+      cursor: pointer;
+      color: #ffc8ff;
+    }
+
+    #sidebar_logo {
+            top: 0;
+            left: 0;
+            position: absolute;
+        }
+
+        a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ff00ff;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .brand {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .brand-text h2 {
+        font-size: 40px;
+      }
+
+      .brand-text p {
+        font-size: 16px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .dashboard-button {
+        width: 90%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">
+      <img src="logo.jpg" alt="Logo">
+      <div class="brand-text">
+        <h2>FutureSync</h2>
+        <p>The Time is Yours!</p>
+      </div>
+    </div>
+  </header>
+  <div class="burger" id="burger">
+    <i class="fa-solid fa-bars" ></i>
+</div>
+
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <ul>&nbsp;&nbsp;&nbsp;<br>
+          <img src="logo.jpg" alt="Logo" width="180" height="100"><br><br><br>
+            <li><a href="http://localhost/FUTURE_SYNC/admin_dashboard/ad_dashboard.html">Home</a></li>
+            <li><a href="http://localhost/FUTURE_SYNC/admin_login/ad_login.php">Admin Login</a></li>
+            <br><br><br><br><br><br><br><br><br>
+            <li><a href="http://localhost/FUTURE_SYNC/admin_dashboard/ad_logout.php">Logout</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Get elements
+        const burger = document.getElementById('burger');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('close-btn');
+
+        // Open sidebar and hide burger icon
+        burger.addEventListener('click', () => {
+            sidebar.classList.add('open');
+            burger.classList.add('hide'); // Hide burger icon
+        });
+
+        // Close sidebar and show burger icon
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            burger.classList.remove('hide'); // Show burger icon again
+        });
+
+        // Close sidebar when clicking outside and show burger again
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !burger.contains(e.target)) {
+                sidebar.classList.remove('open');
+                burger.classList.remove('hide'); // Show burger again
+            }
+        });
+    </script>
+   
+
+  <h1>ADMINISTRATOR</h1><br><br><br><br>
+
+  <div class="button-container">
+    <a class="dashboard-button" href="http://localhost/FUTURE_SYNC/admin_notification/notification.php">
+      <i class="fa-regular fa-bell"></i>
+      NOTIFICATIONS
+    </a>
+
+    <a class="dashboard-button" href="http://localhost/FUTURE_SYNC/admin_usermgt/display.php">
+      <i class="fa-solid fa-users"></i>
+      USER MANAGEMENT
+    </a>
+
+    <a class="dashboard-button" href="http://localhost/FUTURE_SYNC/admin_dashboard/ad_logout.php">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      LOGOUT
+    </a>
+  </div>
+</body>
+
+</html>
