@@ -60,5 +60,3 @@ Future Sync (Digital Time Capsule) is a full-stack web application that enables 
 ### Admin Logout Page
 <img src="https://github.com/user-attachments/assets/114a482f-ed14-4a89-8c9d-85f9f5fdfe9d" width="800"/>
 
-## Documentation
-[View Full Project Report (PDF)](FutureSync_Project_Report.pdf)
